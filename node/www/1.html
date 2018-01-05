@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+    <style  media="screen">
+      .panel{width:1007px;height:1059px;
+          background:url('img/bg.png') no-repeat;
+          position:relative;}
+        .pointer {width:233px;height:296px;background:url('img/pointer.png') no-repeat;position: absolute;left:423px;top:323px;transition:5s all ease-in-out;transform-origin:117px 180px;}
+    </style>
+<script src="ajax.js" charset="utf-8"></script>
+<script type="text/javascript">
+ function rnd(n, m){
+      return Math.floor(Math.random()*(m-n)+n);
+    }
+     window.onload=function(){
+         var oPointer=document.querySelector('.pointer');
+        oPointer.onclick=function(){
+              
+      ajax({
+          url: '/chou',
+          success: function (str){
+                  var n=parseInt(str);
+                  var deg=0;
+
+           switch(n){
+              case 0:
+                deg=rnd(0,3)*120;
+                break;
+              case 1:
+                deg=-60;
+                break;
+              case 2:
+                deg=60;
+                break;
+              case 3:
+                deg=180;
+                break;
+            }
+             deg+=rnd(3,6)*360;
+            oPointer.style.transform='rotate('+deg+'deg)';
+          }
+        });
+           
+
+        }
+
+
+     }
+
+</script>
+</head>
+<body>
+       <div class="panel">
+            <div class="pointer">
+                
+
+
+
+            </div>
+       </div>	
+</body>
+</html>
